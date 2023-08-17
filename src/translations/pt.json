@@ -1,5 +1,9 @@
 {
-  "Index": {
-    "title": "Olá mundo!"
+  "Login": {
+    "UsernameOrEmail": "Usuário / E-mail",
+    "Password": "Senha",
+    "Enter": "Entrar",
+    "DontHaveAccount": "Não possui conta? ",
+    "Register": "Register"
   }
 }

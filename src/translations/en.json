@@ -1,5 +1,12 @@
 {
   "Index": {
     "title": "Hello world!"
+  },
+  "Login": {
+    "UsernameOrEmail": "Username / Email",
+    "Password": "Password",
+    "Enter": "Enter",
+    "DontHaveAccount": "Don't have an account? ",
+    "Register": "Register"
   }
 }

@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  text-decoration: none;
+
+  &:hover {
+    .text {
+      .bold {
+        color: #4787be;
+      }
+    }
+  }
+
+  .text {
+    color: #343840;
+    font-size: 10px;
+    font-weight: 400;
+
+    .bold {
+      color: #3a5d7b;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
+}
