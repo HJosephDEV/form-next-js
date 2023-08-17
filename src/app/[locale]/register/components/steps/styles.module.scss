@@ -1,0 +1,62 @@
+.wrapperSteps {
+  width: 100%;
+  max-width: 980px;
+  border: 3px solid #4e4424;
+  border-bottom: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 59% 50%;
+  background-image: url('/assets/images/background-register.jpg');
+  box-shadow: 0px 4px 4px 200px rgba(0, 0, 0, 0.25) inset;
+
+  .stepsContainer {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    .circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 2px 3px 2px 1px rgba(0, 0, 0, 0.25);
+
+      &.active {
+        background: #aee9f2;
+        border: 3px solid #fff;
+      }
+    }
+
+    .line {
+      width: 48px;
+      height: 4px;
+      background: #fff;
+      display: block;
+      border-radius: 6px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .wrapperSteps {
+    max-width: 300px;
+    min-height: 522px;
+    border-right: none;
+    border-bottom: 3px solid #4e4424;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 10px;
+    .stepsContainer {
+      flex-direction: column;
+
+      .line {
+        height: 48px;
+        width: 4px;
+      }
+    }
+  }
+}

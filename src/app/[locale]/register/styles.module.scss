@@ -1,0 +1,30 @@
+.container {
+  background-image: url('/assets/images/background-login.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  .cardContainer {
+    max-width: 850px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    .cardContainer {
+      display: flex;
+      min-height: 622px;
+
+      .content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.container {
+  width: 112px;
+  height: 112px;
+  background: #fff;
+  border: 1px solid #343840;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.5s ease;
+    background: #3a5d7b;
+    border-color: #3a5d7b;
+
+    &.selected {
+      border-color: #343840;
+    }
+  }
+
+  &.selected {
+    border: 3px solid #4787be;
+  }
+}
