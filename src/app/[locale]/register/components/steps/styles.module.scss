@@ -1,6 +1,6 @@
 .wrapperSteps {
   width: 100%;
-  max-width: 980px;
+  height: 162px;
   border: 3px solid #4e4424;
   border-bottom: none;
   border-top-left-radius: 10px;
@@ -45,7 +45,7 @@
 @media (min-width: 768px) {
   .wrapperSteps {
     max-width: 300px;
-    min-height: 522px;
+    height: auto;
     border-right: none;
     border-bottom: 3px solid #4e4424;
     border-top-right-radius: 0;

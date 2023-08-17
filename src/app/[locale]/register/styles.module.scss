@@ -18,7 +18,8 @@
   .container {
     .cardContainer {
       display: flex;
-      min-height: 622px;
+      max-height: calc(100vh - 48px);
+      min-height: 522px;
 
       .content {
         width: 100%;
