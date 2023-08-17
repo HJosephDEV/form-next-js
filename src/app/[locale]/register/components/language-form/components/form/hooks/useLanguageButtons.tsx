@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import styles from '../styles.module.scss';
 
 import { useState } from 'react';
@@ -5,18 +6,22 @@ import LanguageButton from '../components/language-button';
 import {
   RenderableLanguageButtonProps,
   RenderableLanguageButtonsProp
-} from '@/app/register/@types';
+} from '@/app/[locale]/register/@types';
 
 export default function useLanguageButtons() {
+  const router = useRouter();
+
   const [buttons, setButtons] = useState<RenderableLanguageButtonsProp>({
     brazil: {
       selected: false,
+      locale: 'pt',
       imageSrc: '/assets/images/brazil.png',
       imageAlt: 'bandeira do Brasil',
       event: () => handleSelectedButton('brazil')
     },
     eua: {
       selected: false,
+      locale: 'en',
       imageSrc: '/assets/images/eua.png',
       imageAlt: 'bandeira do EUA',
       event: () => handleSelectedButton('eua')
@@ -33,6 +38,7 @@ export default function useLanguageButtons() {
       buttons[button].selected = false;
     }
 
+    router.push(`/${buttons[paramButton].locale}/register`);
     setButtons({ ...buttons });
   };
 

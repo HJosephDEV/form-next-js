@@ -5,6 +5,7 @@ export type LanguageButtonComponentProps = {
 
 export type RenderableLanguageButtonProps = {
   selected: boolean;
+  locale: string;
   imageSrc: string;
   imageAlt: string;
   event: () => void;

@@ -1,4 +1,4 @@
-import { LanguageButtonComponentProps } from '@/app/register/@types';
+import { LanguageButtonComponentProps } from '@/app/[locale]/register/@types';
 import styles from './styles.module.scss';
 
 export default function LanguageButton({

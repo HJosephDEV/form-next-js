@@ -3,10 +3,17 @@
 import { ButtonComponentProps } from './@types';
 import styles from './styles.module.scss';
 
-export default function ButtonComponent({ children, ...rest }: ButtonComponentProps): JSX.Element {
+export default function ButtonComponent({
+  children,
+  full,
+  ...rest
+}: ButtonComponentProps): JSX.Element {
   return (
     <button
-      className={styles.button}
+      className={`
+        ${styles.button} 
+        ${full ? styles.full : ''}
+      `}
       {...rest}
     >
       {children}
