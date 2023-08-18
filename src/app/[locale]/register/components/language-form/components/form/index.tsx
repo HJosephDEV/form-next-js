@@ -3,9 +3,11 @@
 import ButtonComponent from '@/components/button';
 import useLanguageButtons from './hooks/useLanguageButtons';
 import styles from './styles.module.scss';
+import { useTranslations } from 'next-intl';
 
 export default function Form(): JSX.Element {
   const { renderableButtons } = useLanguageButtons();
+  const t = useTranslations('Register');
 
   return (
     <div>
@@ -14,7 +16,7 @@ export default function Form(): JSX.Element {
         full={true}
         type={'button'}
       >
-        Confirmar
+        {t('Confirm')}
       </ButtonComponent>
     </div>
   );

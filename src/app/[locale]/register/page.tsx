@@ -1,3 +1,4 @@
+import AccountForm from './components/account-form';
 import Footer from './components/footer';
 import LanguageForm from './components/language-form';
 import Steps from './components/steps';
@@ -9,7 +10,8 @@ export default function RegisterPage(): JSX.Element {
       <div className={styles.cardContainer}>
         <Steps />
         <div className={styles.content}>
-          <LanguageForm />
+          {/* <LanguageForm /> */}
+          <AccountForm />
           <Footer />
         </div>
       </div>

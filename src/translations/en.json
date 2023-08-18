@@ -8,5 +8,9 @@
     "Enter": "Enter",
     "DontHaveAccount": "Don't have an account? ",
     "Register": "Register"
+  },
+  "Register": {
+    "SelectALanguage": "Select a language",
+    "Confirm": "Confirm"
   }
 }

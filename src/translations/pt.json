@@ -5,5 +5,9 @@
     "Enter": "Entrar",
     "DontHaveAccount": "Não possui conta? ",
     "Register": "Register"
+  },
+  "Register": {
+    "SelectALanguage": "Selecione o idioma",
+    "Confirm": "Confirmar"
   }
 }

@@ -1,5 +1,6 @@
+import { ReactNode } from '@/@types';
 import styles from './styles.module.scss';
 
-export default function Title(): JSX.Element {
-  return <h1 className={styles.title}>Select a language:</h1>;
+export default function Title({ children }: ReactNode): JSX.Element {
+  return <h1 className={styles.title}>{children}</h1>;
 }
