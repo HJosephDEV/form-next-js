@@ -1,4 +1,4 @@
 export type ButtonComponentProps = {
   children: React.ReactNode;
-  full: boolean;
+  full?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
