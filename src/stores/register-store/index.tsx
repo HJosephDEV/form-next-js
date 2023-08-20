@@ -9,7 +9,7 @@ const states: States = {
 
 const actions: StateCreator<States & Actions, [], [], Actions> = (set) => ({
   revealLanguageForm: () =>
-    set({ showLanguageForm: false, showAccountForm: false, showAccountInfos: false }),
+    set({ showLanguageForm: true, showAccountForm: false, showAccountInfos: false }),
   revealAccountForm: () =>
     set({ showLanguageForm: false, showAccountForm: true, showAccountInfos: false }),
   revealAccountInfos: () =>
