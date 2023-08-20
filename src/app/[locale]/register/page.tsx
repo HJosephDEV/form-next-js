@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 import useRegisterStore from '@/stores/register-store';
 
 export default function RegisterPage(): JSX.Element {
-  const { showLanguageForm, showAccountForm, showAccountInfosForm } = useRegisterStore();
+  const { showLanguageForm, showAccountForm, showAccountInfos } = useRegisterStore();
 
   return (
     <div className={styles.container}>
@@ -18,7 +18,7 @@ export default function RegisterPage(): JSX.Element {
         <div className={styles.content}>
           {showLanguageForm && <LanguageForm />}
           {showAccountForm && <AccountForm />}
-          {showAccountInfosForm && <AccountInfos />}
+          {showAccountInfos && <AccountInfos />}
           <Footer />
         </div>
       </div>
