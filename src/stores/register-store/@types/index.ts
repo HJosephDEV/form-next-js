@@ -1,7 +1,11 @@
 export type States = {
   showLanguageForm: boolean;
+  showAccountForm: boolean;
+  showAccountInfos: boolean;
 };
 
 export type Actions = {
-  updateLanguageForm: (state: boolean) => void;
+  revealLanguageForm: () => void;
+  revealAccountForm: () => void;
+  revealAccountInfos: () => void;
 };

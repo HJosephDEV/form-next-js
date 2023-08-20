@@ -1,5 +1,3 @@
-'use client';
-
 import Input from '@/components/input';
 import styles from './styles.module.scss';
 import ButtonComponent from '@/components/button';
@@ -18,7 +16,12 @@ export default function Form(): JSX.Element {
         inputLabel={t('Password')}
         isPasswordInput={true}
       />
-      <ButtonComponent type={'button'}>{t('Enter')}</ButtonComponent>
+      <ButtonComponent
+        type={'button'}
+        full={true}
+      >
+        {t('Enter')}
+      </ButtonComponent>
     </form>
   );
 }

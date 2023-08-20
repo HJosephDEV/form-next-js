@@ -1,13 +1,9 @@
-'use client';
-
 import ButtonComponent from '@/components/button';
 import useLanguageButtons from './hooks/useLanguageButtons';
 import styles from './styles.module.scss';
-import { useTranslations } from 'next-intl';
 
 export default function Form(): JSX.Element {
-  const { renderableButtons } = useLanguageButtons();
-  const t = useTranslations('Register');
+  const { renderableButtons, revealAccountForm, t } = useLanguageButtons();
 
   return (
     <div>
@@ -15,6 +11,7 @@ export default function Form(): JSX.Element {
       <ButtonComponent
         full={true}
         type={'button'}
+        onClick={revealAccountForm}
       >
         {t('Confirm')}
       </ButtonComponent>
