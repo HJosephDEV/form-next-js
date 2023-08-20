@@ -1,0 +1,31 @@
+.button {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    color: #1c1c1c;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+@media (min-width: 768px) {
+  .button {
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    span {
+      font-size: 24px;
+    }
+  }
+}
