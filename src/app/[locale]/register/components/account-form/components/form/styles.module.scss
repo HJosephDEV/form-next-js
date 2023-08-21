@@ -1,0 +1,16 @@
+.container {
+  .formContainer {
+    margin: 24px 0 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    .formContainer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

@@ -3,14 +3,15 @@ import styles from './styles.module.scss';
 import BackButton from '../../../back-button';
 import Title from '../../../title';
 
-import useRegisterStore from '@/stores/register-store';
+import useAccountFormHeader from './hooks';
 
 export default function Header(): JSX.Element {
-  const { revealLanguageForm } = useRegisterStore();
+  const { handleBackButton } = useAccountFormHeader();
+
   return (
     <header>
       <div className={styles.backButtonContainer}>
-        <BackButton onClick={revealLanguageForm} />
+        <BackButton onClick={handleBackButton} />
       </div>
       <Title>Informações da conta</Title>
     </header>

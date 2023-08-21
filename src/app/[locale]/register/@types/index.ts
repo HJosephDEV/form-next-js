@@ -4,6 +4,7 @@ export type LanguageButtonComponentProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type RenderableLanguageButtonProps = {
+  key: string;
   selected: boolean;
   locale: string;
   imageSrc: string;
@@ -11,8 +12,16 @@ export type RenderableLanguageButtonProps = {
   event: () => void;
 };
 
-export type RenderableLanguageButtonsProp = {
-  [key: string]: RenderableLanguageButtonProps;
-  brazil: RenderableLanguageButtonProps;
-  eua: RenderableLanguageButtonProps;
+export type AccountFormFieldValidations = {
+  isRequired?: () => {};
+};
+
+export type AccountFormField = {
+  key: string;
+  label: string;
+  value: string | number;
+  type: string;
+  state: boolean;
+  feedback: string;
+  validations: AccountFormFieldValidations;
 };

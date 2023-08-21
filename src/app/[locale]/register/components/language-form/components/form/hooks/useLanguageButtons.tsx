@@ -1,54 +1,58 @@
 import styles from '../styles.module.scss';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-import {
-  RenderableLanguageButtonProps,
-  RenderableLanguageButtonsProp
-} from '@/app/[locale]/register/@types';
+import { RenderableLanguageButtonProps } from '@/app/[locale]/register/@types';
 
 import LanguageButton from '../components/language-button';
 
 import useRegisterStore from '@/stores/register-store';
 
 export default function useLanguageButtons() {
+  const { revealAccountForm, languageButtons, updateLanguageButtons } = useRegisterStore();
   const router = useRouter();
   const t = useTranslations('Register');
-  const { revealAccountForm } = useRegisterStore();
 
-  const [buttons, setButtons] = useState<RenderableLanguageButtonsProp>({
-    brazil: {
-      selected: false,
+  const languageinitialState: RenderableLanguageButtonProps[] = [
+    {
+      key: 'brazil',
+      selected: true,
       locale: 'pt',
       imageSrc: '/assets/images/brazil.png',
       imageAlt: 'bandeira do Brasil',
       event: () => handleSelectedButton('brazil')
     },
-    eua: {
+    {
+      key: 'eua',
       selected: false,
       locale: 'en',
       imageSrc: '/assets/images/eua.png',
       imageAlt: 'bandeira do EUA',
       event: () => handleSelectedButton('eua')
     }
-  });
+  ];
 
   const handleSelectedButton = (paramButton: string) => {
-    if (buttons[paramButton].selected) return;
+    const index: number = languageinitialState.findIndex((button) => button.key === paramButton);
+    if (languageinitialState[index].selected) return;
 
-    buttons[paramButton].selected = true;
+    languageinitialState[index].selected = true;
 
-    for (let button in buttons) {
-      if (button === paramButton) continue;
-      buttons[button].selected = false;
-    }
+    languageinitialState.forEach((_, i) => {
+      if (index === i) return;
+      languageinitialState[i].selected = false;
+    });
 
-    router.push(`/${buttons[paramButton].locale}/register`);
-    setButtons({ ...buttons });
+    updateLanguageButtons(languageinitialState);
+    router.push(`/${languageinitialState[index].locale}/register`);
   };
 
-  const renderableButtons: JSX.Element[] = Object.values(buttons).map(
+  useEffect(() => {
+    !languageButtons.length && updateLanguageButtons(languageinitialState);
+  }, []);
+
+  const renderableButtons: JSX.Element[] = languageButtons.map(
     (value: RenderableLanguageButtonProps, i: number) => (
       <LanguageButton
         key={`button-${i}`}
