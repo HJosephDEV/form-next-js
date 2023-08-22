@@ -3,7 +3,7 @@ import { States, Actions } from './@types';
 
 const states: States = {
   languageButtons: [],
-  formFields: [],
+  formFields: {},
   showLanguageForm: true,
   showAccountForm: false,
   showAccountInfos: false,
@@ -11,20 +11,18 @@ const states: States = {
 };
 
 const actions: StateCreator<States & Actions, [], [], Actions> = (set) => ({
-  updateBackToLanguageForm: (state) => set(() => ({ backToLanguageForm: state })),
+  updateFields: (state) => set(() => ({ formFields: state })),
   updateLanguageButtons: (state) => set(() => ({ languageButtons: state })),
+  updateBackToLanguageForm: (state) => set(() => ({ backToLanguageForm: state })),
   revealLanguageForm: () =>
     set(() => ({ showLanguageForm: true, showAccountForm: false, showAccountInfos: false })),
   revealAccountForm: () =>
     set(() => ({ showLanguageForm: false, showAccountForm: true, showAccountInfos: false })),
   revealAccountInfos: () =>
-    set(() => ({ showLanguageForm: false, showAccountForm: false, showAccountInfos: true })),
-  updateFields: (state) => set(() => ({ formFields: state }))
+    set(() => ({ showLanguageForm: false, showAccountForm: false, showAccountInfos: true }))
 });
 
-export const useRegisterStore = create<States & Actions>((...args) => ({
+export default create<States & Actions>((...args) => ({
   ...states,
   ...actions(...args)
 }));
-
-export default useRegisterStore;

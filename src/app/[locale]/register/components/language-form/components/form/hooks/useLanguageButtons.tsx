@@ -10,7 +10,6 @@ import LanguageButton from '../components/language-button';
 import useRegisterStore from '@/stores/register-store';
 
 export default function useLanguageButtons() {
-  const { revealAccountForm, languageButtons, updateLanguageButtons } = useRegisterStore();
   const router = useRouter();
   const t = useTranslations('Register');
 
@@ -44,16 +43,18 @@ export default function useLanguageButtons() {
       languageinitialState[i].selected = false;
     });
 
-    updateLanguageButtons(languageinitialState);
+    useRegisterStore.getState().updateLanguageButtons(languageinitialState);
     router.push(`/${languageinitialState[index].locale}/register`);
   };
 
   useEffect(() => {
-    !languageButtons.length && updateLanguageButtons(languageinitialState);
+    !useRegisterStore.getState().languageButtons.length &&
+      useRegisterStore.getState().updateLanguageButtons(languageinitialState);
   }, []);
 
-  const renderableButtons: JSX.Element[] = languageButtons.map(
-    (value: RenderableLanguageButtonProps, i: number) => (
+  const renderableButtons: JSX.Element[] = useRegisterStore
+    .getState()
+    .languageButtons.map((value: RenderableLanguageButtonProps, i: number) => (
       <LanguageButton
         key={`button-${i}`}
         selected={value.selected}
@@ -65,8 +66,11 @@ export default function useLanguageButtons() {
           className={styles.countryIcon}
         />
       </LanguageButton>
-    )
-  );
+    ));
+
+  const revealAccountForm = () => {
+    useRegisterStore.getState().revealAccountForm();
+  };
 
   return {
     renderableButtons,

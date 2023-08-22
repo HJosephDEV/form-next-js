@@ -12,16 +12,15 @@ export type RenderableLanguageButtonProps = {
   event: () => void;
 };
 
-export type AccountFormFieldValidations = {
-  isRequired?: () => {};
-};
-
 export type AccountFormField = {
-  key: string;
   label: string;
   value: string | number;
   type: string;
   state: boolean;
   feedback: string;
-  validations: AccountFormFieldValidations;
+  validations: Function[];
+};
+
+export type AccountFormFields = {
+  [key: string]: AccountFormField;
 };

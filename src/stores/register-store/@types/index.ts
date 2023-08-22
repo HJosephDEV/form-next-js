@@ -1,4 +1,4 @@
-import { AccountFormField, RenderableLanguageButtonProps } from '@/app/[locale]/register/@types';
+import { AccountFormFields, RenderableLanguageButtonProps } from '@/app/[locale]/register/@types';
 
 export type States = {
   languageButtons: RenderableLanguageButtonProps[];
@@ -6,14 +6,14 @@ export type States = {
   showAccountForm: boolean;
   showAccountInfos: boolean;
   backToLanguageForm: boolean;
-  formFields: AccountFormField[];
+  formFields: AccountFormFields;
 };
 
 export type Actions = {
   revealLanguageForm: () => void;
   revealAccountForm: () => void;
   revealAccountInfos: () => void;
-  updateFields: (state: AccountFormField[]) => void;
+  updateFields: (state: AccountFormFields) => void;
   updateBackToLanguageForm: (state: boolean) => void;
   updateLanguageButtons: (state: RenderableLanguageButtonProps[]) => void;
 };
