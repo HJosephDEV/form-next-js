@@ -14,10 +14,12 @@ export type RenderableLanguageButtonProps = {
 
 export type AccountFormField = {
   label: string;
-  value: string | number;
+  value: string;
   type: string;
+  placeholder: string;
   state: boolean;
   feedback: string;
+  mask: (value: string) => string;
   validations: Function[];
 };
 
