@@ -1,15 +1,30 @@
-import { EventHandler, useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 import { AccountFormField, AccountFormFields } from '@/app/[locale]/register/@types';
 
 import Input from '@/components/input';
 import useRegisterStore from '@/stores/register-store';
 
 export default function useAccountForm() {
-  const isRequired = (key: string): boolean => {
-    const state: boolean = !!useRegisterStore.getState().formFields[key].value;
-    useRegisterStore.getState().formFields[key].state = state;
-    useRegisterStore.getState().formFields[key].feedback = !state ? 'Campo obrigatório' : '';
+  const [
+    formFields,
+    updateFields,
+    backToLanguageForm,
+    revealLanguageForm,
+    updateBackToLanguageForm,
+    revealAccountInfos
+  ] = useRegisterStore((state) => [
+    state.formFields,
+    state.updateFields,
+    state.backToLanguageForm,
+    state.revealLanguageForm,
+    state.updateBackToLanguageForm,
+    state.revealAccountInfos
+  ]);
+
+  const isRequired = (key: string, fields: AccountFormFields): boolean => {
+    const state: boolean = !!fields[key].value;
+    fields[key].state = state;
+    fields[key].feedback = !state ? 'Campo obrigatório' : '';
     return !state;
   };
 
@@ -81,44 +96,44 @@ export default function useAccountForm() {
   };
 
   useEffect(() => {
-    !Object.keys(useRegisterStore.getState().formFields).length &&
-      useRegisterStore.getState().updateFields(fieldsInitialState);
+    !Object.keys(formFields).length && updateFields(fieldsInitialState);
   }, []);
 
   useEffect(() => {
-    if (!useRegisterStore.getState().backToLanguageForm) return;
+    if (!backToLanguageForm) return;
 
-    useRegisterStore.getState().updateFields(useRegisterStore.getState().formFields);
-    useRegisterStore.getState().revealLanguageForm();
-    useRegisterStore.getState().updateBackToLanguageForm(false);
-  }, [useRegisterStore.getState().backToLanguageForm]);
+    updateFields(formFields);
+    revealLanguageForm();
+    updateBackToLanguageForm(false);
+  }, [backToLanguageForm]);
 
   const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    useRegisterStore.getState().formFields[name].value = value;
+    formFields[name].value = value;
+    updateFields(formFields);
   };
 
-  const renderableFields: JSX.Element[] = Object.entries(
-    useRegisterStore.getState().formFields
-  ).map(([key, value]: [key: string, value: AccountFormField]) => (
-    <Input
-      key={key}
-      name={key}
-      type={value.type}
-      defaultValue={value.value}
-      inputLabel={value.label}
-      feedback={value.feedback}
-      state={value.state}
-      onChange={handleInputOnChange}
-    />
-  ));
+  const renderableFields: JSX.Element[] = Object.entries(formFields).map(
+    ([key, value]: [key: string, value: AccountFormField]) => (
+      <Input
+        key={key}
+        name={key}
+        type={value.type}
+        defaultValue={value.value}
+        inputLabel={value.label}
+        feedback={value.feedback}
+        state={value.state}
+        onChange={handleInputOnChange}
+      />
+    )
+  );
 
   const handleValidations = () => {
     let isValid = true;
 
-    for (const [key, value] of Object.entries(useRegisterStore.getState().formFields)) {
+    for (const [key, value] of Object.entries(formFields)) {
       for (const validation of value.validations) {
-        const containError: boolean = validation(key);
+        const containError: boolean = validation(key, formFields);
         if (containError) {
           isValid = false;
           break;
@@ -131,9 +146,8 @@ export default function useAccountForm() {
 
   const handleNextButton = () => {
     const isValid = handleValidations();
-    useRegisterStore.getState().updateFields(useRegisterStore.getState().formFields);
-
-    isValid && useRegisterStore.getState().revealAccountInfos();
+    updateFields(formFields);
+    isValid && revealAccountInfos();
   };
 
   return { renderableFields, handleNextButton };

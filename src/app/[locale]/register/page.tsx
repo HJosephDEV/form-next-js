@@ -9,7 +9,11 @@ import styles from './styles.module.scss';
 import useRegisterStore from '@/stores/register-store';
 
 export default function RegisterPage(): JSX.Element {
-  const { showLanguageForm, showAccountForm, showAccountInfos } = useRegisterStore();
+  const [showLanguageForm, showAccountForm, showAccountInfos] = useRegisterStore((state) => [
+    state.showLanguageForm,
+    state.showAccountForm,
+    state.showAccountInfos
+  ]);
 
   return (
     <div className={styles.container}>

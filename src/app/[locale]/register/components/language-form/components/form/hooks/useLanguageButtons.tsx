@@ -10,6 +10,11 @@ import LanguageButton from '../components/language-button';
 import useRegisterStore from '@/stores/register-store';
 
 export default function useLanguageButtons() {
+  const [updateLanguageButtons, languageButtons, revealAccountForm] = useRegisterStore((state) => [
+    state.updateLanguageButtons,
+    state.languageButtons,
+    state.revealAccountForm
+  ]);
   const router = useRouter();
   const t = useTranslations('Register');
 
@@ -33,23 +38,24 @@ export default function useLanguageButtons() {
   ];
 
   const handleSelectedButton = (paramButton: string) => {
-    const index: number = languageinitialState.findIndex((button) => button.key === paramButton);
-    if (languageinitialState[index].selected) return;
+    const index: number = useRegisterStore
+      .getState()
+      .languageButtons.findIndex((button) => button.key === paramButton);
+    if (useRegisterStore.getState().languageButtons[index].selected) return;
 
-    languageinitialState[index].selected = true;
+    useRegisterStore.getState().languageButtons[index].selected = true;
 
-    languageinitialState.forEach((_, i) => {
+    useRegisterStore.getState().languageButtons.forEach((_, i) => {
       if (index === i) return;
-      languageinitialState[i].selected = false;
+      useRegisterStore.getState().languageButtons[i].selected = false;
     });
 
-    useRegisterStore.getState().updateLanguageButtons(languageinitialState);
-    router.push(`/${languageinitialState[index].locale}/register`);
+    updateLanguageButtons(useRegisterStore.getState().languageButtons);
+    router.push(`/${useRegisterStore.getState().languageButtons[index].locale}/register`);
   };
 
   useEffect(() => {
-    !useRegisterStore.getState().languageButtons.length &&
-      useRegisterStore.getState().updateLanguageButtons(languageinitialState);
+    !languageButtons.length && updateLanguageButtons(languageinitialState);
   }, []);
 
   const renderableButtons: JSX.Element[] = useRegisterStore
@@ -67,10 +73,6 @@ export default function useLanguageButtons() {
         />
       </LanguageButton>
     ));
-
-  const revealAccountForm = () => {
-    useRegisterStore.getState().revealAccountForm();
-  };
 
   return {
     renderableButtons,
