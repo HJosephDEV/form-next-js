@@ -1,0 +1,29 @@
+.wrapper {
+  border: 1px solid #343840;
+  border-radius: 6px;
+  width: 100%;
+  position: relative;
+
+  .container {
+    height: 30px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+
+    .selectedOption,
+    .placeholder {
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .selectedOption {
+      color: #343840;
+    }
+
+    .placeholder {
+      color: #a8a8a8;
+    }
+  }
+}

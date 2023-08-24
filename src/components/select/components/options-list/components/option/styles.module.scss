@@ -1,0 +1,21 @@
+.option {
+  padding: 6px 12px;
+  color: #343840;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+
+  &.disabledOption {
+    &,
+    &:hover {
+      background: #f0f0f0;
+      color: #b4b4b4;
+    }
+  }
+
+  &:hover,
+  &.selected {
+    background: #4787be;
+    color: #fff;
+  }
+}

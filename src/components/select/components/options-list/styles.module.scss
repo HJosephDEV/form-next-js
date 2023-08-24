@@ -1,0 +1,24 @@
+.listOptions {
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  padding: 6px 0;
+  animation: showList 0.3s ease;
+  user-select: none;
+
+  @keyframes showList {
+    0% {
+      transform: translateY(-8px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+}
