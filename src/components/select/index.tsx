@@ -1,16 +1,23 @@
 import { useState } from 'react';
+import { SelectComponentProps, optionProps } from './@types';
+import { classnames } from '@/utils';
 import styles from './styles.module.scss';
+
+import { LuChevronDown } from 'react-icons/lu';
 import OptionsList from './components/options-list';
-import { optionProps } from './@types';
+import SelectInput from './components/select-input';
+import Label from './components/label';
+import Feedback from './components/feedback';
 
-export default function Select(): JSX.Element {
-  const list: optionProps[] = [
-    { value: null, label: 'Selecione', disabled: false },
-    { value: 1, label: '1', disabled: false }
-  ];
-
+export default function Select({
+  label,
+  options,
+  selectedOption,
+  state,
+  feedback,
+  onOptionSelect
+}: SelectComponentProps): JSX.Element {
   const [showOptionsList, setShowOptionsList] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<optionProps | null>(list[0]);
 
   const handleOptionsList = () => setShowOptionsList(!showOptionsList);
 
@@ -19,36 +26,34 @@ export default function Select(): JSX.Element {
     if (disabled) return;
 
     if (value !== selectedOption?.value) {
-      setSelectedOption(option);
+      onOptionSelect(option);
       handleOptionsList();
       return;
     }
 
-    setSelectedOption(list[0]);
+    onOptionSelect(options[0]);
     handleOptionsList();
   };
 
   return (
     <div className={styles.wrapper}>
-      <div
-        className={styles.container}
-        onClick={handleOptionsList}
-      >
-        <span
-          className={`${styles.selectedOption} ${
-            selectedOption?.value === null ? styles.placeholder : ''
-          }`}
-        >
-          {selectedOption?.label}
-        </span>
+      <Label>{label}</Label>
+
+      <div className={classnames(styles.selectContainer, !state && styles.isInvalid)}>
+        <SelectInput
+          selectedOption={selectedOption}
+          handleOptionsList={handleOptionsList}
+        />
+
+        <OptionsList
+          showOptionsList={showOptionsList}
+          handleSelectOption={handleSelectOption}
+          selectedOptionValue={selectedOption?.value || null}
+          options={options}
+        />
       </div>
 
-      <OptionsList
-        showOptionsList={showOptionsList}
-        handleSelectOption={handleSelectOption}
-        selectedOptionValue={selectedOption?.value || null}
-        options={list}
-      />
+      {!state && <Feedback>{feedback}</Feedback>}
     </div>
   );
 }

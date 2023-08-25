@@ -1,0 +1,30 @@
+.container {
+  padding: 0 12px;
+  min-width: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  flex: 1;
+  cursor: pointer;
+
+  .selectedOption,
+  .placeholder {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .selectedOption {
+    padding-right: 10px;
+    color: #343840;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    flex: 1;
+  }
+
+  .placeholder {
+    color: #75758a;
+  }
+}

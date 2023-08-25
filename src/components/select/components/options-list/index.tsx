@@ -1,6 +1,7 @@
 import { OptionsListComponentProps } from '../../@types';
-import Option from './components/option';
 import styles from './styles.module.scss';
+
+import Option from './components/option';
 
 export default function OptionsList({
   showOptionsList,
@@ -19,11 +20,11 @@ export default function OptionsList({
   ));
 
   return (
-    <div
+    <ul
       className={styles.listOptions}
       style={{ display: showOptionsList ? 'flex' : 'none' }}
     >
       {renderableOptions}
-    </div>
+    </ul>
   );
 }

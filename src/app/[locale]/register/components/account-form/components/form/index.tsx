@@ -9,7 +9,6 @@ export default function Form(): JSX.Element {
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>{renderableFields}</div>
-      <Select />
       <ButtonComponent
         full={true}
         onClick={handleNextButton}

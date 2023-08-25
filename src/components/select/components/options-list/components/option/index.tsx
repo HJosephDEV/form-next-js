@@ -1,8 +1,6 @@
-import styles from './styles.module.scss';
-
 import { OptionComponentProps } from '@/components/select/@types';
-
 import { classnames } from '@/utils';
+import styles from './styles.module.scss';
 
 export default function Option({
   selected,
@@ -10,17 +8,16 @@ export default function Option({
   disabledOption,
   eventOption
 }: OptionComponentProps): JSX.Element {
-  const OPTION_CLASS = classnames(
-    styles.option,
-    disabledOption && styles.disabledOption,
-    selected && styles.selected
-  );
   return (
-    <div
-      className={OPTION_CLASS}
+    <li
+      className={classnames(
+        styles.option,
+        disabledOption && styles.disabledOption,
+        selected && styles.selected
+      )}
       onClick={eventOption}
     >
       {labelOption}
-    </div>
+    </li>
   );
 }

@@ -17,3 +17,17 @@ export type OptionComponentProps = {
   disabledOption: boolean;
   eventOption: () => void;
 };
+
+export type SelectInputComponentProps = {
+  selectedOption: optionProps | null;
+  handleOptionsList: () => void;
+};
+
+export type SelectComponentProps = {
+  label: string;
+  options: optionProps[];
+  selectedOption: optionProps;
+  state?: boolean;
+  feedback?: string;
+  onOptionSelect: (option: optionProps) => void;
+};
