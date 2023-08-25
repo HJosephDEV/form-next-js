@@ -1,5 +1,4 @@
 export const normalizePhoneNumber = (value: String | undefined) => {
-  debugger;
   if (!value) return '';
 
   return value
@@ -13,3 +12,6 @@ export const isEmail = (email: string): boolean => {
   const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$~/g;
   return regex.test(email);
 };
+
+export const classnames = (...classes: Array<string | undefined | null | boolean>): string =>
+  classes.filter(Boolean).join(' ');

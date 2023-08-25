@@ -5,12 +5,14 @@ export type optionProps = {
 };
 
 export type OptionsListComponentProps = {
-  showOptionsList: boolean;
   options: optionProps[];
+  showOptionsList: boolean;
+  selectedOptionValue: null | string | number;
   handleSelectOption: (option: any) => void;
 };
 
 export type OptionComponentProps = {
+  selected: boolean;
   labelOption: string;
   disabledOption: boolean;
   eventOption: () => void;

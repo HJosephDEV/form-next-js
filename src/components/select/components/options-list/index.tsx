@@ -4,8 +4,9 @@ import styles from './styles.module.scss';
 
 export default function OptionsList({
   showOptionsList,
-  options,
-  handleSelectOption
+  handleSelectOption,
+  selectedOptionValue,
+  options
 }: OptionsListComponentProps): JSX.Element {
   const renderableOptions: JSX.Element[] = options.map((option, i) => (
     <Option
@@ -13,6 +14,7 @@ export default function OptionsList({
       labelOption={option.label}
       disabledOption={option.disabled}
       eventOption={() => handleSelectOption(option)}
+      selected={selectedOptionValue === option.value}
     />
   ));
 

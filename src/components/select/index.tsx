@@ -10,7 +10,7 @@ export default function Select(): JSX.Element {
   ];
 
   const [showOptionsList, setShowOptionsList] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<optionProps | undefined>(list[0]);
+  const [selectedOption, setSelectedOption] = useState<optionProps | null>(list[0]);
 
   const handleOptionsList = () => setShowOptionsList(!showOptionsList);
 
@@ -46,6 +46,7 @@ export default function Select(): JSX.Element {
       <OptionsList
         showOptionsList={showOptionsList}
         handleSelectOption={handleSelectOption}
+        selectedOptionValue={selectedOption?.value || null}
         options={list}
       />
     </div>
