@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useEffect } from 'react';
 import { RenderableLanguageButtonProps } from '@/app/[locale]/register/@types';
 import { useTranslationsHook } from '@/utils';
@@ -15,11 +16,12 @@ export default function useLanguageButtons() {
     state.revealAccountForm
   ]);
   const router = useRouter();
+  const locale = useLocale();
 
   const languageinitialState: RenderableLanguageButtonProps[] = [
     {
       key: 'brazil',
-      selected: true,
+      selected: locale === 'pt',
       locale: 'pt',
       imageSrc: '/assets/images/brazil.png',
       imageAlt: 'bandeira do Brasil',
@@ -27,7 +29,7 @@ export default function useLanguageButtons() {
     },
     {
       key: 'eua',
-      selected: false,
+      selected: locale === 'en',
       locale: 'en',
       imageSrc: '/assets/images/eua.png',
       imageAlt: 'bandeira do EUA',

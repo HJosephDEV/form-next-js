@@ -14,15 +14,13 @@ export default function useAccountForm() {
     updateFields,
     backToLanguageForm,
     revealLanguageForm,
-    updateBackToLanguageForm,
-    revealAccountInfos
+    updateBackToLanguageForm
   ] = useRegisterStore((state) => [
     state.formFields,
     state.updateFields,
     state.backToLanguageForm,
     state.revealLanguageForm,
-    state.updateBackToLanguageForm,
-    state.revealAccountInfos
+    state.updateBackToLanguageForm
   ]);
 
   const isRequired = (key: string, fields: AccountFormFields): boolean => {
@@ -184,8 +182,9 @@ export default function useAccountForm() {
   };
 
   const renderableFields: JSX.Element[] = Object.entries(formFields).map(
-    ([key, value]: [key: string, value: any]) =>
-      Object.keys(selectFieldsOptions).includes(key) ? (
+    ([key, value]: [key: string, value: any]) => {
+      const ignoredTranslationList = ['phone', 'password', 'retypePassword'];
+      return Object.keys(selectFieldsOptions).includes(key) ? (
         <Select
           key={key}
           name={key}
@@ -205,12 +204,15 @@ export default function useAccountForm() {
           type={value.type}
           value={value.value}
           inputLabel={$t(value.label)}
-          placeholder={$t(value.placeholder)}
+          placeholder={
+            !ignoredTranslationList.includes(key) ? $t(value.placeholder) : value.placeholder
+          }
           feedback={$t(value.feedback)}
           state={value.state}
           onChange={handleInputOnChange}
         />
-      )
+      );
+    }
   );
 
   const handleValidations = () => {
@@ -231,8 +233,8 @@ export default function useAccountForm() {
 
   const handleNextButton = () => {
     const isValid = handleValidations();
+    console.log(isValid);
     updateFields(formFields);
-    isValid && revealAccountInfos();
   };
 
   return { renderableFields, handleNextButton, $t };

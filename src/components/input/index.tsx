@@ -4,6 +4,7 @@ import { InputProps } from './@types';
 import styles from './styles.module.scss';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { useState } from 'react';
+import { classnames } from '@/utils';
 
 export default function Input({
   inputLabel,
@@ -19,20 +20,15 @@ export default function Input({
   const handleEyeFlag = () => setEyeOn(!isEyeOn);
 
   return (
-    <div
-      className={`
-        ${styles.container} 
-        ${inputClass || ''} 
-      `}
-    >
+    <div className={classnames(styles.container, inputClass || '')}>
       <label className={styles.label}>{inputLabel}</label>
 
       <div
-        className={`
-          ${styles.inputContainer} 
-          ${state === false ? styles.isInvalid : ''} 
-          ${isPasswordInput && styles.noRightBorderRadius}
-        `}
+        className={classnames(
+          styles.inputContainer,
+          state === false && styles.isInvalid,
+          isPasswordInput && styles.noRightBorderRadius
+        )}
       >
         <input
           type={type}

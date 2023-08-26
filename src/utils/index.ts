@@ -21,5 +21,9 @@ export const classnames = (...classes: Array<string | undefined | null | boolean
 
 export const useTranslationsHook = (namespace: string) => {
   const t = useTranslations(namespace);
-  return (key: string) => (t(key).includes(`${namespace}.`) ? key : t(key));
+  return (key: string) => {
+    if (key === '') return '';
+
+    return t(key).includes(`${namespace}.`) ? key : t(key);
+  };
 };
