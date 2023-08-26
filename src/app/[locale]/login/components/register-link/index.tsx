@@ -1,9 +1,9 @@
 import Link from 'next/link';
+import { useTranslationsHook } from '@/utils';
 import styles from './styles.module.scss';
-import { useTranslations } from 'next-intl';
 
 export default function RegisterLink(): JSX.Element {
-  const t = useTranslations('Login');
+  const $t = useTranslationsHook('Login');
 
   return (
     <Link
@@ -11,8 +11,8 @@ export default function RegisterLink(): JSX.Element {
       className={styles.container}
     >
       <span className={styles.text}>
-        {t('DontHaveAccount')}
-        <b className={styles.bold}>{t('Register')}</b>
+        {$t('DontHaveAccount')}
+        <b className={styles.bold}>{$t('Register')}</b>
       </span>
     </Link>
   );

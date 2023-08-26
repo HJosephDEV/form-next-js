@@ -16,12 +16,6 @@ export default function Steps(): JSX.Element {
             useRegisterStore.getState().showAccountForm ? styles.active : ''
           }`}
         />
-        <div className={styles.line} />
-        <div
-          className={`${styles.circle} ${
-            useRegisterStore.getState().showAccountInfos ? styles.active : ''
-          }`}
-        />
       </div>
     </section>
   );

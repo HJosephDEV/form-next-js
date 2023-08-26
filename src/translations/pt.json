@@ -4,10 +4,31 @@
     "Password": "Senha",
     "Enter": "Entrar",
     "DontHaveAccount": "Não possui conta? ",
-    "Register": "Register"
+    "Register": "Cadastre-se"
   },
   "Register": {
     "SelectALanguage": "Selecione o idioma",
-    "Confirm": "Confirmar"
+    "Confirm": "Confirmar",
+    "Next": "Próximo",
+    "AccountInformations": "Informações da conta",
+    "RequiredField": "Campo obrigatório",
+    "InvalidEmail": "E-mail inválido",
+    "PasswordNotSame": "As senhas não são iguais",
+    "IncompletePhone": "Telefone incompleto",
+    "Select": "Selecione",
+    "Female": "Feminino",
+    "Male": "Masculino",
+    "Other": "Outro",
+    "FirstName": "Nome",
+    "LastName": "Sobrenome",
+    "Username": "Nome de usuário",
+    "Phone": "Telefone",
+    "Email": "E-mail",
+    "Gender": "Gênero",
+    "Password": "Senha",
+    "RetypePassword": "Repita a senha",
+    "TypeHere": "Digite aqui",
+    "ExampleEmail": "john@exemplo.com",
+    "Back": "Voltar"
   }
 }

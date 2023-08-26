@@ -1,11 +1,10 @@
-import ButtonComponent from '@/components/button';
-import useAccountForm from './hooks/useAccountForm';
 import styles from './styles.module.scss';
-import Select from '@/components/select';
+
+import useAccountForm from './hooks/useAccountForm';
+import ButtonComponent from '@/components/button';
 
 export default function Form(): JSX.Element {
-  const { renderableFields, handleNextButton } = useAccountForm();
-
+  const { renderableFields, handleNextButton, $t } = useAccountForm();
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>{renderableFields}</div>
@@ -13,7 +12,7 @@ export default function Form(): JSX.Element {
         full={true}
         onClick={handleNextButton}
       >
-        Próximo
+        {$t('Next')}
       </ButtonComponent>
     </div>
   );

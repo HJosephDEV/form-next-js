@@ -11,6 +11,27 @@
   },
   "Register": {
     "SelectALanguage": "Select a language",
-    "Confirm": "Confirm"
+    "Confirm": "Confirm",
+    "Next": "Next",
+    "AccountInformations": "Account Informations",
+    "RequiredField": "Required Field",
+    "InvalidEmail": "Invalid email",
+    "PasswordNotSame": "The passwords are not the same",
+    "IncompletePhone": "Incomplete phone",
+    "Select": "Select",
+    "Female": "Female",
+    "Male": "Male",
+    "Other": "Other",
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "Username": "Username",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Gender": "Gender",
+    "Password": "Password",
+    "RetypePassword": "Retype password",
+    "TypeHere": "Type Here",
+    "ExampleEmail": "john@exemple.com",
+    "Back": "Back"
   }
 }

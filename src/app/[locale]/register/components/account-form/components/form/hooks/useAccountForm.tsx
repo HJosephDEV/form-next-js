@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { optionProps } from '@/components/select/@types';
 import { AccountFormFields, SelectFieldsOptionsProps } from '@/app/[locale]/register/@types';
-import { isEmail, normalizePhoneNumber } from '@/utils';
+import { isEmail, normalizePhoneNumber, useTranslationsHook } from '@/utils';
 
 import Input from '@/components/input';
 import Select from '@/components/select';
 import useRegisterStore from '@/stores/register-store';
 
 export default function useAccountForm() {
+  const $t = useTranslationsHook('Register');
   const [
     formFields,
     updateFields,
@@ -29,7 +30,7 @@ export default function useAccountForm() {
     const state = typeof value === 'string' ? !!value.trim() : value?.value !== null;
 
     fields[key].state = state;
-    fields[key].feedback = !state ? 'Campo obrigatório' : '';
+    fields[key].feedback = !state ? 'RequiredField' : '';
     return !state;
   };
 
@@ -38,7 +39,7 @@ export default function useAccountForm() {
     if (typeof value !== 'string') return false;
     const state: boolean = isEmail(value);
     fields[key].state = state;
-    fields[key].feedback = !state ? 'E-mail inválido' : '';
+    fields[key].feedback = !state ? 'InvalidEmail' : '';
     return !state;
   };
 
@@ -48,7 +49,7 @@ export default function useAccountForm() {
       !fields.password.value;
 
     fields[key].state = state;
-    fields[key].feedback = !state ? 'As senhas não são iguais' : '';
+    fields[key].feedback = !state ? 'PasswordNotSame' : '';
     return !state;
   };
 
@@ -58,52 +59,52 @@ export default function useAccountForm() {
 
     const state: boolean = value.length === 15;
     fields[key].state = state;
-    fields[key].feedback = !state ? 'Telefone incompleto' : '';
+    fields[key].feedback = !state ? 'IncompletePhone' : '';
     return !state;
   };
 
   const selectFieldsOptions: SelectFieldsOptionsProps = {
     gender: [
-      { value: null, label: 'Selecione', disabled: true },
-      { value: 0, label: 'Homem', disabled: false },
-      { value: 1, label: 'Mulher', disabled: false },
-      { value: 2, label: 'Outro', disabled: false }
+      { value: null, label: $t('Select'), disabled: true },
+      { value: 0, label: $t('Female'), disabled: false },
+      { value: 1, label: $t('Male'), disabled: false },
+      { value: 2, label: $t('Other'), disabled: false }
     ]
   };
 
   const fieldsInitialState: AccountFormFields = {
     firstName: {
-      label: 'Nome',
+      label: 'FirstName',
       value: '',
       type: 'text',
-      placeholder: 'Digite aqui',
+      placeholder: 'TypeHere',
       state: true,
       feedback: '',
       mask: () => null,
       validations: [isRequired]
     },
     lastName: {
-      label: 'Sobrenome',
+      label: 'LastName',
       value: '',
       type: 'text',
-      placeholder: 'Digite aqui',
+      placeholder: 'TypeHere',
       state: true,
       feedback: '',
       mask: () => null,
       validations: [isRequired]
     },
     username: {
-      label: 'Nome de usuário',
+      label: 'Username',
       value: '',
       type: 'text',
-      placeholder: 'Digite aqui',
+      placeholder: 'TypeHere',
       state: true,
       feedback: '',
       mask: () => null,
       validations: [isRequired]
     },
     phone: {
-      label: 'Telefone',
+      label: 'Phone',
       value: '',
       type: 'text',
       placeholder: 'xx xxxxx - xxxx',
@@ -113,27 +114,27 @@ export default function useAccountForm() {
       validations: [isRequired, isPhoneValid]
     },
     email: {
-      label: 'E-mail',
+      label: 'Email',
       value: '',
       type: 'text',
-      placeholder: 'john@example.com',
+      placeholder: 'ExampleEmail',
       state: true,
       feedback: '',
       mask: () => null,
       validations: [isRequired, isValidEmail]
     },
     gender: {
-      label: 'Gênero',
+      label: 'Gender',
       value: selectFieldsOptions.gender[0],
       state: true,
       type: 'text',
-      placeholder: 'john@example.com',
+      placeholder: '',
       feedback: '',
       mask: () => null,
       validations: [isRequired]
     },
     password: {
-      label: 'Senha',
+      label: 'Password',
       value: '',
       type: 'password',
       placeholder: '********',
@@ -143,7 +144,7 @@ export default function useAccountForm() {
       validations: [isRequired]
     },
     retypePassword: {
-      label: 'Repita a senha',
+      label: 'RetypePassword',
       value: '',
       type: 'password',
       placeholder: '********',
@@ -188,11 +189,13 @@ export default function useAccountForm() {
         <Select
           key={key}
           name={key}
-          label={value.label}
+          label={$t(value.label)}
           options={selectFieldsOptions[key]}
-          selectedOption={value.value}
+          selectedOption={
+            selectFieldsOptions[key].find((test) => test.value === value.value.value) || null
+          }
           state={value.state}
-          feedback={value.feedback}
+          feedback={$t(value.feedback)}
           onOptionSelect={handleSelectOnChange}
         />
       ) : (
@@ -201,9 +204,9 @@ export default function useAccountForm() {
           name={key}
           type={value.type}
           value={value.value}
-          inputLabel={value.label}
-          placeholder={value.placeholder}
-          feedback={value.feedback}
+          inputLabel={$t(value.label)}
+          placeholder={$t(value.placeholder)}
+          feedback={$t(value.feedback)}
           state={value.state}
           onChange={handleInputOnChange}
         />
@@ -232,5 +235,5 @@ export default function useAccountForm() {
     isValid && revealAccountInfos();
   };
 
-  return { renderableFields, handleNextButton };
+  return { renderableFields, handleNextButton, $t };
 }

@@ -1,22 +1,20 @@
-import styles from '../styles.module.scss';
-import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
 import { RenderableLanguageButtonProps } from '@/app/[locale]/register/@types';
+import { useTranslationsHook } from '@/utils';
+import styles from '../styles.module.scss';
 
 import LanguageButton from '../components/language-button';
-
 import useRegisterStore from '@/stores/register-store';
 
 export default function useLanguageButtons() {
+  const $t = useTranslationsHook('Register');
   const [updateLanguageButtons, languageButtons, revealAccountForm] = useRegisterStore((state) => [
     state.updateLanguageButtons,
     state.languageButtons,
     state.revealAccountForm
   ]);
   const router = useRouter();
-  const t = useTranslations('Register');
 
   const languageinitialState: RenderableLanguageButtonProps[] = [
     {
@@ -77,6 +75,6 @@ export default function useLanguageButtons() {
   return {
     renderableButtons,
     revealAccountForm,
-    t
+    $t
   };
 }

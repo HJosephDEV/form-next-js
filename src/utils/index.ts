@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 export const normalizePhoneNumber = (value: String | undefined) => {
   if (!value || (value.length === 1 && isNaN(Number(value[0])))) return '';
 
@@ -16,3 +18,8 @@ export const isEmail = (email: string): boolean => {
 
 export const classnames = (...classes: Array<string | undefined | null | boolean>): string =>
   classes.filter(Boolean).join(' ');
+
+export const useTranslationsHook = (namespace: string) => {
+  const t = useTranslations(namespace);
+  return (key: string) => (t(key).includes(`${namespace}.`) ? key : t(key));
+};

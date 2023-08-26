@@ -1,9 +1,10 @@
-import ButtonComponent from '@/components/button';
-import useLanguageButtons from './hooks/useLanguageButtons';
 import styles from './styles.module.scss';
 
+import useLanguageButtons from './hooks/useLanguageButtons';
+import ButtonComponent from '@/components/button';
+
 export default function Form(): JSX.Element {
-  const { renderableButtons, revealAccountForm, t } = useLanguageButtons();
+  const { renderableButtons, revealAccountForm, $t } = useLanguageButtons();
 
   return (
     <div>
@@ -13,7 +14,7 @@ export default function Form(): JSX.Element {
         type={'button'}
         onClick={revealAccountForm}
       >
-        {t('Confirm')}
+        {$t('Confirm')}
       </ButtonComponent>
     </div>
   );
