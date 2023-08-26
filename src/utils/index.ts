@@ -1,5 +1,5 @@
 export const normalizePhoneNumber = (value: String | undefined) => {
-  if (!value) return '';
+  if (!value || (value.length === 1 && isNaN(Number(value[0])))) return '';
 
   return value
     .replace(/[\D]/g, '')
@@ -9,8 +9,9 @@ export const normalizePhoneNumber = (value: String | undefined) => {
 };
 
 export const isEmail = (email: string): boolean => {
-  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$~/g;
-  return regex.test(email);
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/gm;
+  const validation = regex.test(email);
+  return validation;
 };
 
 export const classnames = (...classes: Array<string | undefined | null | boolean>): string =>

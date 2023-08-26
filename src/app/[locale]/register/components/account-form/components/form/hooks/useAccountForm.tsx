@@ -79,7 +79,7 @@ export default function useAccountForm() {
       placeholder: 'Digite aqui',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired]
     },
     lastName: {
@@ -89,7 +89,7 @@ export default function useAccountForm() {
       placeholder: 'Digite aqui',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired]
     },
     username: {
@@ -99,7 +99,7 @@ export default function useAccountForm() {
       placeholder: 'Digite aqui',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired]
     },
     phone: {
@@ -119,7 +119,7 @@ export default function useAccountForm() {
       placeholder: 'john@example.com',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired, isValidEmail]
     },
     gender: {
@@ -129,7 +129,7 @@ export default function useAccountForm() {
       type: 'text',
       placeholder: 'john@example.com',
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired]
     },
     password: {
@@ -139,7 +139,7 @@ export default function useAccountForm() {
       placeholder: '********',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired]
     },
     retypePassword: {
@@ -149,7 +149,7 @@ export default function useAccountForm() {
       placeholder: '********',
       state: true,
       feedback: '',
-      mask: () => '',
+      mask: () => null,
       validations: [isRequired, isEqualPassword]
     }
   };
@@ -170,9 +170,10 @@ export default function useAccountForm() {
     const { name, value } = e.target;
 
     if (!(name in formFields)) return;
+
     const stringValue: string = value.trim().length ? value : '';
-    let formatedValue: string = formFields[name].mask(stringValue);
-    formFields[name].value = formatedValue || stringValue;
+    let formatedValue: string | null = formFields[name].mask(stringValue);
+    formFields[name].value = formatedValue === null ? stringValue : formatedValue;
     updateFields(formFields);
   };
 

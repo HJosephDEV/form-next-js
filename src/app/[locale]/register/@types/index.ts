@@ -21,7 +21,7 @@ export type AccountFormInputField = {
   placeholder: string;
   state: boolean;
   feedback: string;
-  mask: (value: string) => string;
+  mask: (value: string) => string | null;
   validations: Function[];
 };
 
