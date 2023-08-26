@@ -1,3 +1,5 @@
+import { optionProps } from '@/components/select/@types';
+
 export type LanguageButtonComponentProps = {
   children: React.ReactNode;
   selected?: boolean;
@@ -12,9 +14,9 @@ export type RenderableLanguageButtonProps = {
   event: () => void;
 };
 
-export type AccountFormField = {
+export type AccountFormInputField = {
   label: string;
-  value: string;
+  value: string | optionProps | null;
   type: string;
   placeholder: string;
   state: boolean;
@@ -24,5 +26,9 @@ export type AccountFormField = {
 };
 
 export type AccountFormFields = {
-  [key: string]: AccountFormField;
+  [key: string]: AccountFormInputField;
+};
+
+export type SelectFieldsOptionsProps = {
+  [key: string]: optionProps[];
 };

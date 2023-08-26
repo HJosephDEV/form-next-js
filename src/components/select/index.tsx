@@ -3,7 +3,6 @@ import { SelectComponentProps, optionProps } from './@types';
 import { classnames } from '@/utils';
 import styles from './styles.module.scss';
 
-import { LuChevronDown } from 'react-icons/lu';
 import OptionsList from './components/options-list';
 import SelectInput from './components/select-input';
 import Label from './components/label';
@@ -11,6 +10,7 @@ import Feedback from './components/feedback';
 
 export default function Select({
   label,
+  name,
   options,
   selectedOption,
   state,
@@ -26,12 +26,12 @@ export default function Select({
     if (disabled) return;
 
     if (value !== selectedOption?.value) {
-      onOptionSelect(option);
+      onOptionSelect(option, name);
       handleOptionsList();
       return;
     }
 
-    onOptionSelect(options[0]);
+    onOptionSelect(options[0], name);
     handleOptionsList();
   };
 

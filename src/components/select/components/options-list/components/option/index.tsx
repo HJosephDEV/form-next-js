@@ -15,7 +15,7 @@ export default function Option({
         disabledOption && styles.disabledOption,
         selected && styles.selected
       )}
-      onClick={eventOption}
+      onClick={() => !disabledOption && eventOption()}
     >
       {labelOption}
     </li>

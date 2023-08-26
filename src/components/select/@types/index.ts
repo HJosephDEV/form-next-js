@@ -25,9 +25,10 @@ export type SelectInputComponentProps = {
 
 export type SelectComponentProps = {
   label: string;
+  name: string;
   options: optionProps[];
-  selectedOption: optionProps;
+  selectedOption: optionProps | null;
   state?: boolean;
   feedback?: string;
-  onOptionSelect: (option: optionProps) => void;
+  onOptionSelect: (option: optionProps, name: string) => void;
 };
