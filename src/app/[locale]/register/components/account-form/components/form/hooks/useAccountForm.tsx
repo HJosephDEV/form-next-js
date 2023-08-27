@@ -157,6 +157,7 @@ export default function useAccountForm() {
 
   useEffect(() => {
     !Object.keys(formFields).length && updateFields(fieldsInitialState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -165,6 +166,7 @@ export default function useAccountForm() {
     updateFields(formFields);
     revealLanguageForm();
     updateBackToLanguageForm(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [backToLanguageForm]);
 
   const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,7 +175,7 @@ export default function useAccountForm() {
     if (!(name in formFields)) return;
 
     const stringValue: string = value.trim().length ? value : '';
-    let formatedValue: string | null = formFields[name].mask(stringValue);
+    const formatedValue: string | null = formFields[name].mask(stringValue);
     formFields[name].value = formatedValue === null ? stringValue : formatedValue;
     updateFields(formFields);
   };
@@ -184,6 +186,7 @@ export default function useAccountForm() {
   };
 
   const renderableFields: JSX.Element[] = Object.entries(formFields).map(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ([key, value]: [key: string, value: any]) => {
       const ignoredTranslationList = ['phone', 'password', 'retypePassword'];
       return Object.keys(selectFieldsOptions).includes(key) ? (

@@ -22,6 +22,7 @@ export type AccountFormInputField = {
   state: boolean;
   feedback: string;
   mask: (value: string) => string | null;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   validations: Function[];
 };
 

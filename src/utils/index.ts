@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-export const normalizePhoneNumber = (value: String | undefined) => {
+export const normalizePhoneNumber = (value: string | undefined) => {
   if (!value || (value.length === 1 && isNaN(Number(value[0])))) return '';
 
   return value

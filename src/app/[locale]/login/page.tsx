@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Form from './components/form';
 import RegisterLink from './components/register-link';
 import Title from './components/title';
@@ -7,7 +8,7 @@ export default function LoginPage(): JSX.Element {
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.cardContainer}>
-        <img
+        <Image
           src={'/assets/images/background-card-login.jpg'}
           alt='imagem do container'
           className={styles.containerBackgroundImage}

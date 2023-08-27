@@ -7,6 +7,7 @@ import styles from '../styles.module.scss';
 
 import LanguageButton from '../components/language-button';
 import useRegisterStore from '@/stores/register-store';
+import Image from 'next/image';
 
 export default function useLanguageButtons() {
   const $t = useTranslationsHook('Register');
@@ -56,6 +57,7 @@ export default function useLanguageButtons() {
 
   useEffect(() => {
     !languageButtons.length && updateLanguageButtons(languageinitialState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderableButtons: JSX.Element[] = useRegisterStore
@@ -66,7 +68,7 @@ export default function useLanguageButtons() {
         selected={value.selected}
         onClick={value.event}
       >
-        <img
+        <Image
           src={value.imageSrc}
           alt={value.imageAlt}
           className={styles.countryIcon}

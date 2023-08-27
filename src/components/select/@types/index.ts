@@ -8,7 +8,7 @@ export type OptionsListComponentProps = {
   options: optionProps[];
   showOptionsList: boolean;
   selectedOptionValue: null | string | number;
-  handleSelectOption: (option: any) => void;
+  handleSelectOption: (option: optionProps) => void;
 };
 
 export type OptionComponentProps = {
