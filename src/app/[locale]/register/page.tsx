@@ -1,7 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
 import AccountForm from './components/account-form';
-import AccountInfos from './components/account-infos';
 import Footer from './components/footer';
 import LanguageForm from './components/language-form';
 import Steps from './components/steps';
@@ -9,10 +9,9 @@ import styles from './styles.module.scss';
 import useRegisterStore from '@/stores/register-store';
 
 export default function RegisterPage(): JSX.Element {
-  const [showLanguageForm, showAccountForm, showAccountInfos] = useRegisterStore((state) => [
+  const [showLanguageForm, showAccountForm] = useRegisterStore((state) => [
     state.showLanguageForm,
-    state.showAccountForm,
-    state.showAccountInfos
+    state.showAccountForm
   ]);
 
   return (
@@ -20,9 +19,8 @@ export default function RegisterPage(): JSX.Element {
       <div className={styles.cardContainer}>
         <Steps />
         <div className={styles.content}>
-          {showLanguageForm && <LanguageForm />}
+          <Suspense fallback={<div>aaa</div>}>{showLanguageForm && <LanguageForm />}</Suspense>
           {showAccountForm && <AccountForm />}
-          {showAccountInfos && <AccountInfos />}
           <Footer />
         </div>
       </div>

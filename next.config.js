@@ -9,5 +9,14 @@ const withNextIntl = require('next-intl/plugin')(
 module.exports = withNextIntl({
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/login',
+        permanent: true
+      }
+    ];
   }
 });

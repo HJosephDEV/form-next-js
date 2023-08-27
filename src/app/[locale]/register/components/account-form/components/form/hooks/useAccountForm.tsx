@@ -6,9 +6,11 @@ import { isEmail, normalizePhoneNumber, useTranslationsHook } from '@/utils';
 import Input from '@/components/input';
 import Select from '@/components/select';
 import useRegisterStore from '@/stores/register-store';
+import { useRouter } from 'next/navigation';
 
 export default function useAccountForm() {
   const $t = useTranslationsHook('Register');
+  const router = useRouter();
   const [
     formFields,
     updateFields,
@@ -233,8 +235,13 @@ export default function useAccountForm() {
 
   const handleNextButton = () => {
     const isValid = handleValidations();
-    console.log(isValid);
-    updateFields(formFields);
+
+    if (!isValid) {
+      updateFields(formFields);
+      return;
+    }
+
+    router.push('/login');
   };
 
   return { renderableFields, handleNextButton, $t };
