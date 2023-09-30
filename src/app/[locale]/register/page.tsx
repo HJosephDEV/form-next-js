@@ -1,6 +1,5 @@
 'use client';
 
-import { Suspense } from 'react';
 import AccountForm from './components/account-form';
 import Footer from './components/footer';
 import LanguageForm from './components/language-form';
@@ -19,7 +18,7 @@ export default function RegisterPage(): JSX.Element {
       <div className={styles.cardContainer}>
         <Steps />
         <div className={styles.content}>
-          <Suspense fallback={<div>aaa</div>}>{showLanguageForm && <LanguageForm />}</Suspense>
+          {showLanguageForm && <LanguageForm />}
           {showAccountForm && <AccountForm />}
           <Footer />
         </div>

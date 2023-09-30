@@ -5,6 +5,7 @@ import ButtonComponent from '@/components/button';
 
 export default function Form(): JSX.Element {
   const { renderableFields, handleNextButton, $t } = useAccountForm();
+
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>{renderableFields}</div>

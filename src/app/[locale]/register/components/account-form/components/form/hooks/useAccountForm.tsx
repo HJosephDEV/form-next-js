@@ -27,7 +27,7 @@ export default function useAccountForm() {
 
   const isRequired = (key: string, fields: AccountFormFields): boolean => {
     const value = fields[key].value;
-    const state = typeof value === 'string' ? !!value.trim() : value?.value !== null;
+    const state = typeof value === 'string' ? !!value.trim() : value !== null;
 
     fields[key].state = state;
     fields[key].feedback = !state ? 'RequiredField' : '';
@@ -36,10 +36,13 @@ export default function useAccountForm() {
 
   const isValidEmail = (key: string, fields: AccountFormFields): boolean => {
     const value = fields[key].value;
+
     if (typeof value !== 'string') return false;
+
     const state: boolean = isEmail(value);
     fields[key].state = state;
     fields[key].feedback = !state ? 'InvalidEmail' : '';
+
     return !state;
   };
 
@@ -50,16 +53,19 @@ export default function useAccountForm() {
 
     fields[key].state = state;
     fields[key].feedback = !state ? 'PasswordNotSame' : '';
+
     return !state;
   };
 
   const isPhoneValid = (key: string, fields: AccountFormFields): boolean => {
     const value = fields[key].value;
+
     if (typeof value !== 'string') return false;
 
     const state: boolean = value.length === 15;
     fields[key].state = state;
     fields[key].feedback = !state ? 'IncompletePhone' : '';
+
     return !state;
   };
 

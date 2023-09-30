@@ -71,6 +71,8 @@ export default function useLanguageButtons() {
         <Image
           src={value.imageSrc}
           alt={value.imageAlt}
+          width={50}
+          height={30}
           className={styles.countryIcon}
         />
       </LanguageButton>

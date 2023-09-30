@@ -11,6 +11,7 @@ export default function LoginPage(): JSX.Element {
         <Image
           src={'/assets/images/background-card-login.jpg'}
           alt='imagem do container'
+          layout='fill'
           className={styles.containerBackgroundImage}
         />
 

@@ -50,7 +50,7 @@ export default function Select({
         <OptionsList
           showOptionsList={showOptionsList}
           handleSelectOption={handleSelectOption}
-          selectedOptionValue={selectedOption?.value || null}
+          selectedOptionValue={selectedOption?.value === undefined ? null : selectedOption.value}
           options={options}
         />
       </div>
